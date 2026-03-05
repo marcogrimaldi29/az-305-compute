@@ -33,13 +33,11 @@ mermaid: true
 | [🌐 02 — Azure App Service](02-app-service.md) | Plans, tiers, deployment slots, scaling, networking, hybrid connections |
 | [🐳 03 — Azure Kubernetes Service](03-aks.md) | Node pools, networking modes, RBAC, scaling, add-ons, upgrade strategy |
 | [📦 04 — Azure Container Instances](04-container-instances.md) | Use cases, restart policies, networking, container groups, limits |
-| [☁️ 05 — Azure Container Apps](05-container-apps.md) | ★ Serverless focus — environments, revisions, KEDA scaling, Dapr, ingress |
-| [⚡ 06 — Azure Functions](06-azure-functions.md) | ★ Serverless focus — hosting plans, triggers, bindings, Durable Functions, cold start |
-| [🔗 07 — Azure Logic Apps](07-logic-apps.md) | ★ Serverless focus — Consumption vs Standard, connectors, ISE, B2B, error handling |
+| [☁️ 05 — Azure Container Apps](05-container-apps.md) | Serverless focus — environments, revisions, KEDA scaling, Dapr, ingress |
+| [⚡ 06 — Azure Functions](06-azure-functions.md) | Serverless focus — hosting plans, triggers, bindings, Durable Functions, cold start |
+| [🔗 07 — Azure Logic Apps](07-logic-apps.md) | Serverless focus — Consumption vs Standard, connectors, ISE, B2B, error handling |
 | [📊 08 — Feature Comparison](08-feature-comparison.md) | IaaS→serverless spectrum, side-by-side tables, decision matrices |
 | [🎯 09 — Exam Caveats & Cheatsheet](09-exam-caveats-cheatsheet.md) | Decision trees, exam traps, quick-fire numbers, final checklist |
-
-★ = Extra depth on serverless services
 
 ---
 
