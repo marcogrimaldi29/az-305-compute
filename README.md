@@ -23,11 +23,9 @@
 | 🌐 **Azure App Service** | PaaS | Managed web apps, APIs, mobile back-ends |
 | 🐳 **Azure Kubernetes Service** | Container orchestration | Microservices at scale, full Kubernetes control |
 | 📦 **Azure Container Instances** | Serverless containers | Short-lived, simple containers without orchestration |
-| ☁️ **Azure Container Apps** ★ | Serverless containers | Event-driven microservices, Dapr, KEDA auto-scaling |
-| ⚡ **Azure Functions** ★ | Serverless compute | Event-driven, short-lived, trigger-based execution |
-| 🔗 **Azure Logic Apps** ★ | Serverless workflow | No-code/low-code integration workflows and B2B |
-
-★ = Extra depth — serverless focus
+| ☁️ **Azure Container Apps** | Serverless containers | Event-driven microservices, Dapr, KEDA auto-scaling |
+| ⚡ **Azure Functions** | Serverless compute | Event-driven, short-lived, trigger-based execution |
+| 🔗 **Azure Logic Apps** | Serverless workflow | No-code/low-code integration workflows and B2B |
 
 ---
 
