@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "06 — Azure Functions ★"
+title: "06 — Azure Functions"
 nav_order: 7
 description: "Deep dive into Azure Functions for AZ-305: Designing Microsoft Azure Infrastructure Solutions — features, SKUs, integration patterns, and exam scenarios."
 permalink: /06-azure-functions/
