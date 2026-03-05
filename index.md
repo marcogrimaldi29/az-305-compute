@@ -20,7 +20,7 @@ mermaid: true
 > - 🎯 **Purpose:** Deep-dive study notes covering the full Azure Compute spectrum for the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam — with extra depth on serverless: Container Apps, Functions, and Logic Apps.
 > - 📅 **Version:** 2026
 > - ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)
-> - 🌐 **Published:** [marcogrimaldi29.com/az-305-compute](https://marcogrimaldi29.com/az-305-compute/)
+> - 🌐 **Published:** [🖥️ AZ-305: Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)
 > - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/) · [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/)
 
 ---
@@ -72,4 +72,12 @@ Compute is the **largest exam domain at 30–35%** (Design Infrastructure Soluti
 
 ---
 
-*Not affiliated with or endorsed by Microsoft. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/). Content is based on the [AZ-305 official study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-305).*
+## ©️ Credits & Acknowledgements
+
+The [Just the Docs](https://github.com/just-the-docs/just-the-docs) theme is used for a clean, documentation-style layout. Licensed under [MIT](https://opensource.org/license/MIT).
+
+Created with the help of AI. Model used: [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6). The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
+
+---
+
+> *Not affiliated with or endorsed by Microsoft.*
