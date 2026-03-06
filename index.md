@@ -7,7 +7,7 @@ permalink: /
 mermaid: true
 ---
 
-# 🖥️ AZ-305: Compute Services — Deep Dive
+# 🥽 AZ-305: Compute Services — Deep Dive
 {: .no_toc }
 
 **Study Notes & Exam Prep — 2026 Edition**
