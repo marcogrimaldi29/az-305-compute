@@ -65,7 +65,7 @@ az-305-compute/
 
 These notes are hosted on **GitHub Pages** and published as a searchable website:
 
-👉 **[🖥️ AZ-305: Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)**
+👉 **[🥽 AZ-305: Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)**
 
 The site includes full-text search, Mermaid diagram rendering, and mobile-friendly navigation.
 

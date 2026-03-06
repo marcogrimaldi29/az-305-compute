@@ -6,11 +6,11 @@
 remote_theme: just-the-docs/just-the-docs
 
 # ── Site identity ─────────────────────────────────────────
-title: "AZ-305 Compute Services Deep Dive"
-description: "AZ-305 Exam Prep — Azure VMs, App Service, AKS, ACI, Container Apps, Functions & Logic Apps: product overviews, feature comparisons, SKU tables, and exam caveats."
-url: "https://marcogrimaldi29.com"
-baseurl: "/az-305-compute"
-logo: "/assets/images/logo-sunrise-domain.jpg"
+title:        "AZ-305 Compute Services Deep Dive"
+description:  "AZ-305 Exam Prep — Azure VMs, App Service, AKS, ACI, Container Apps, Functions & Logic Apps: product overviews, feature comparisons, SKU tables, and exam caveats."
+url:          "https://marcogrimaldi29.com"
+baseurl:      "/az-305-compute"
+logo:         "/assets/images/logo-sunrise-domain.jpg"
 
 # ── Theme settings ──────────────────────────────────────────────────
 color_scheme:           dark
