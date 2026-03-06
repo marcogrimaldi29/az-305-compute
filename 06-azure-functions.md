@@ -69,7 +69,7 @@ The hosting plan is the **most exam-critical decision** for Azure Functions — 
 | **Scale** | Auto (0 → N) | Auto (min 1 → N) | Manual or auto-scale |
 | **Scale to zero** | ✅ | ❌ (min 1 pre-warmed) | ❌ |
 | **Cold start** | ✅ Yes (after idle) | ❌ No (pre-warmed) | ❌ No |
-| **Max execution duration** | **10 minutes** | **60 minutes** (unlimited for Premium) | Unlimited |
+| **Max execution duration** | **5m** (default) / **10 minutes** (max) | **30m** (default) / **60 minutes** (guaranteed) / **Unbounded** (max) | Unbounded (requires App Service plan sets to Always On) |
 | **VNet Integration** | ❌ | ✅ | ✅ |
 | **Private Endpoints** | ❌ | ✅ | ✅ |
 | **VNET trigger support** | ❌ | ✅ | ✅ |
