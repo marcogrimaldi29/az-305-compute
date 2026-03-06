@@ -72,9 +72,9 @@ Azure VM sizes are grouped into families optimised for different workloads:
 | Two or more VMs in an Availability Set | **99.95%** |
 | Two or more VMs across Availability Zones | **99.99%** |
 
-> ⚠️ **Exam Caveat — Single VM SLA Requires Premium SSD:** A single VM only qualifies for the **99.9% SLA if all OS and data disks are Premium SSD or Ultra Disk**. Standard HDD/SSD disks remove the SLA guarantee entirely.
-
-> ⚠️ **Exam Caveat — 99.99% Requires Availability Zones:** Availability Sets only reach **99.95%** — they protect against rack-level failures within one datacentre. Availability Zones span separate physical buildings and achieve **99.99%**. If the scenario requires the highest SLA, the answer is Availability Zones, not Availability Set.
+> ⚠️ **Exam Caveats:**
+> - **Single VM SLA Requires Premium SSD:** A single VM only qualifies for the **99.9% SLA if all OS and data disks are Premium SSD or Ultra Disk**. Standard HDD/SSD disks remove the SLA guarantee entirely.
+> - **99.99% Requires Availability Zones:** Availability Sets only reach **99.95%** — they protect against rack-level failures within one datacentre. Availability Zones span separate physical buildings and achieve **99.99%**. If the scenario requires the highest SLA, the answer is Availability Zones, not Availability Set.
 
 ---
 

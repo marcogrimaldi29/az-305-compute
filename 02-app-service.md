@@ -83,7 +83,7 @@ Deployment slots are **live environments** within the same App Service (e.g., st
 | Swap | Atomic swap of two slots — zero downtime |
 | Warm-up | Slot is warmed up before swap completes |
 | Slot settings | Some app settings can be **slot-sticky** (not swapped) |
-| Max slots | 5 (Standard) / **20** (Premium) |
+| Max slots | **5** (Standard) / **20** (Premium) |
 
 > ⚠️ **Exam Caveat — Slot Swap Behaviour:** During a swap, the **staging slot becomes production** and vice versa. Slot-sticky settings stay with their slot. If the scenario mentions **zero-downtime deployments** or **canary releases**, the answer is deployment slots.
 
