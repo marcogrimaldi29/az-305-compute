@@ -11,6 +11,7 @@ description:  "AZ-305 Exam Prep — Azure VMs, App Service, AKS, ACI, Container 
 url:          "https://marcogrimaldi29.com"
 baseurl:      "/az-305-compute"
 logo:         "/assets/images/logo-sunrise-domain.jpg"
+author: "Marco Grimaldi"
 
 # ── Theme settings ──────────────────────────────────────────────────
 color_scheme:           dark
