@@ -7,7 +7,7 @@ permalink: /01-virtual-machines/
 mermaid: true
 ---
 
-# 🖥️ Azure Virtual Machines & VMSS
+# 🖥 Azure Virtual Machines & VMSS
 {: .no_toc }
 
 **IaaS foundation — full OS control, maximum compatibility, lift-and-shift workloads**
