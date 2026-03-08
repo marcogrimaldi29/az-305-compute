@@ -7,7 +7,7 @@ permalink: /05-container-apps/
 mermaid: true
 ---
 
-# ☁️ Azure Container Apps
+# ☁ Azure Container Apps
 {: .no_toc }
 
 **★ Serverless container platform — event-driven microservices without managing Kubernetes**

@@ -9,7 +9,7 @@
 
 > - 🎯 **Purpose:** Deep-dive study notes covering the full Azure Compute spectrum for the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam — with extra depth on serverless: Container Apps, Functions, and Logic Apps.
 > - 📅 **Version:** 2026
-> - ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)
+> - ✍ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)
 > - 🌐 **Published:** [🖥️ AZ-305: Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)
 > - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/) · [🥽 AZ-305: Migration, HA & BCDR — Deep Dive](https://marcogrimaldi29.com/az-305-bcdr/) · [📘 AZ-104 Study Notes](https://marcogrimaldi29.com/az-104-study-notes/)
 
@@ -19,11 +19,11 @@
 
 | Service | Category | Key Use Case |
 |---------|----------|--------------|
-| 🖥️ **Azure VMs & VMSS** | IaaS | Full OS control, lift-and-shift, custom software |
+| 🖥 **Azure VMs & VMSS** | IaaS | Full OS control, lift-and-shift, custom software |
 | 🌐 **Azure App Service** | PaaS | Managed web apps, APIs, mobile back-ends |
 | 🐳 **Azure Kubernetes Service** | Container orchestration | Microservices at scale, full Kubernetes control |
 | 📦 **Azure Container Instances** | Serverless containers | Short-lived, simple containers without orchestration |
-| ☁️ **Azure Container Apps** | Serverless containers | Event-driven microservices, Dapr, KEDA auto-scaling |
+| ☁ **Azure Container Apps** | Serverless containers | Event-driven microservices, Dapr, KEDA auto-scaling |
 | ⚡ **Azure Functions** | Serverless compute | Event-driven, short-lived, trigger-based execution |
 | 🔗 **Azure Logic Apps** | Serverless workflow | No-code/low-code integration workflows and B2B |
 
@@ -70,7 +70,7 @@ The site includes full-text search, Mermaid diagram rendering, and mobile-friend
 
 ---
 
-## ✍️ About the Author
+## ✍ About the Author
 
 These notes are maintained by **[Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/){:target="_blank"}** — Cloud Consultant, Language Trainer & Lifelong Learner.
 
