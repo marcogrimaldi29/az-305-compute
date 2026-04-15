@@ -73,26 +73,16 @@ Compute is the **largest exam domain at 30–35%** (Design Infrastructure Soluti
 
 ---
 
-## ✍ About the Author
-
-These notes are maintained by **[Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)** — Cloud Consultant, Language Trainer & Lifelong Learner.
-
-📍 **Find more content at [🌐 marcogrimaldi29.com](https://marcogrimaldi29.com)**
-
-> The website is continuously updated and based on my personal study notes and experiences. If you have any feedback, suggestions, or corrections, feel free to [reach out](https://marcogrimaldi29.com/contact/)!
-
----
-
 ## 📈 Analytics
 
-This site uses [Umami](https://umami.is/) for privacy-friendly analytics.
+This site uses **[Umami](https://umami.is/)** for privacy-friendly analytics.
 
 ---
 
-## ©️ Credits & Acknowledgements
+## © Credits & Acknowledgements
 
-The [Just the Docs](https://github.com/just-the-docs/just-the-docs) theme is used for a clean, documentation-style layout. Licensed under [MIT](https://opensource.org/license/MIT).
+The **[Just the Docs](https://github.com/just-the-docs/just-the-docs)** theme is used for a clean, documentation-style layout. Licensed under [MIT](https://opensource.org/license/MIT).
 
-Created with the help of AI. Model used: [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6). The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
+Created with the help of AI. Model used: **[Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6)**. The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
 
 > *Not affiliated with or endorsed by Microsoft.*
