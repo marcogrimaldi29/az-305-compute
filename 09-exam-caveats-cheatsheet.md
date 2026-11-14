@@ -129,11 +129,11 @@ For pod-level accessibility from on-premises or peered VNets, use **Azure CNI**.
 
 ---
 
-### Trap 14 — Durable Functions store state in Azure Storage automatically
-> ❌ "I need to manage a database for Durable Functions state"
-> ✅ Durable Functions automatically use **Azure Storage** (or Netherite / MSSQL backends) for state — no custom database needed
+### Trap 14 — Durable Functions persist state for you — no custom database
+> ❌ "I need to build and manage my own database for Durable Functions state"
+> ✅ Durable Functions persist orchestration and entity state through a **storage provider**: the managed **Durable Task Scheduler** (recommended), or a bring-your-own backend — **Azure Storage** (built in, no setup), **MSSQL**, or **Netherite**
 
-The orchestration history, instance state, and timers are all persisted transparently.
+The orchestration history, instance state, and timers are all persisted transparently. Netherite support ends on **31 March 2028**, and Netherite isn't supported on the Flex Consumption plan.
 
 ---
 
@@ -179,7 +179,7 @@ If the scenario requires keeping an **existing HPC scheduler** (for example Slur
 | Custom domain | Shared (D1) |
 | Auto-scale | **Standard** |
 | Deployment slots | **Standard** (5 slots) |
-| VNet Integration | **Standard** |
+| VNet Integration | **Basic** |
 | Zone redundancy | **Premium v2/v3** |
 | Private Endpoint | **Basic** |
 | 99.99% SLA | **Isolated (ASEv3)** |
@@ -265,7 +265,7 @@ flowchart TD
 | Service | One-Line Definition |
 |---------|-------------------|
 | **VMs / VMSS** | IaaS — full OS control, lift-and-shift, scale sets for elastic VM fleets |
-| **App Service** | PaaS web hosting — managed runtime, deployment slots, VNet Integration on Standard+ |
+| **App Service** | PaaS web hosting — managed runtime, deployment slots, VNet Integration on Basic+ |
 | **AKS** | Managed Kubernetes — full K8s API, custom CRDs, free control plane with Standard tier SLA |
 | **ACI** | Serverless containers — instant, ephemeral, 4 vCPU max, per-second billing |
 | **Container Apps** | Serverless container platform — KEDA scaling, Dapr, revisions, scale to zero |
@@ -283,7 +283,7 @@ flowchart TD
 | Single VM + 99.9% SLA | **Premium SSD** on all disks |
 | 99.99% SLA for App Service | **App Service Environment v3** (Isolated tier) |
 | Auto-scale on App Service | **Standard plan or above** |
-| App calls private VNet resource | App Service **VNet Integration** (Standard+) or Functions **Flex Consumption / Premium** |
+| App calls private VNet resource | App Service **VNet Integration** (Basic+) or Functions **Flex Consumption / Premium** |
 | App is NOT publicly accessible | App Service / Functions **Private Endpoint** |
 | Full Kubernetes API access | **AKS** |
 | Containers, scale to zero, KEDA | **Azure Container Apps** |

@@ -56,7 +56,7 @@ More control ← &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 | **OS access** | ✅ Full | ❌ | Node only | ❌ | ❌ | ❌ | ❌ |
 | **Scale to zero** | ❌ | ❌ | ❌ | ✅ (ACI is ephemeral) | ✅ | ✅ (Flex Consumption, Consumption) | ✅ (Consumption) |
 | **Auto-scale** | ✅ VMSS | ✅ (Standard+) | ✅ HPA + Cluster | ❌ | ✅ KEDA | ✅ | ✅ |
-| **VNet integration** | ✅ Native | ✅ (Standard+) | ✅ Native | ✅ (subnet delegation) | ✅ (Dedicated plan) | ✅ (Flex Consumption, Premium, Dedicated) | ✅ (Standard) |
+| **VNet integration** | ✅ Native | ✅ (Basic+) | ✅ Native | ✅ (subnet delegation) | ✅ (Dedicated plan) | ✅ (Flex Consumption, Premium, Dedicated) | ✅ (Standard) |
 | **Private Endpoint** | ✅ | ✅ (Basic+) | ✅ (private cluster) | ❌ | ✅ (Dedicated) | ✅ (Flex Consumption, Premium, Dedicated) | ✅ (Standard) |
 | **Deployment slots** | ❌ | ✅ (Standard+) | ❌ | ❌ | ✅ (revision split) | ✅ (Consumption: 1 staging; ❌ Flex Consumption) | ❌ |
 | **Max execution time** | Unlimited | Unlimited | Unlimited | Unlimited | Unlimited | 10 min (Consumption) / Unlimited (Flex Consumption, Premium, Dedicated) | Unlimited |
@@ -199,7 +199,7 @@ The AZ-305 study guide lists **"Recommend a compute solution for batch processin
 | Service | Private Inbound | Private Outbound (VNet) | Tier Required |
 |---------|----------------|------------------------|--------------|
 | VMs | Native (in VNet) | Native | All tiers |
-| App Service | Private Endpoint | VNet Integration | Basic+ / Standard+ |
+| App Service | Private Endpoint | VNet Integration | Basic+ |
 | AKS | Private cluster | Native (CNI) | All tiers |
 | ACI | Subnet delegation | Subnet delegation | All tiers |
 | Container Apps | Private Endpoint | VNet Integration | Dedicated plan |

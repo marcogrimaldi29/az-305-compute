@@ -183,7 +183,7 @@ Logic Apps is Azure's primary platform for **B2B trading partner integration** a
 | **Connectors** | 500+ managed | Custom + bindings | 500+ (same as LA) |
 | **B2B / EDI support** | ✅ | ❌ | ❌ |
 | **Long-running workflows** | ✅ (days/weeks) | ✅ (Durable) | ✅ |
-| **VNet integration** | ✅ (Standard) | ✅ (Premium) | ❌ |
+| **VNet integration** | ✅ (Standard) | ✅ (Flex Consumption / Premium) | ❌ |
 | **Pricing** | Per action / per plan | Per execution | Per user/flow |
 
 > ⚠️ **Exam Caveat — Logic Apps vs Functions:** Use Logic Apps when the workflow is **connector-heavy, visual, or B2B-oriented**. Use Functions when the logic requires **complex code, custom algorithms, or tight performance control**. They are complementary — a Logic App can call a Function for complex logic steps.

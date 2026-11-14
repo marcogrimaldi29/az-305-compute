@@ -39,7 +39,7 @@ flowchart LR
         APP4["Logic App\n(Standard plan)"]
     end
     subgraph Net["Networking"]
-        VNI["VNet Integration\n(outbound, Standard+)"]
+        VNI["VNet Integration\n(outbound, Basic+)"]
         PE["Private Endpoint\n(inbound isolation)"]
         HC["Hybrid Connections\n(on-prem TCP access)"]
     end
@@ -58,15 +58,15 @@ The **App Service Plan** defines the region, number of VM instances, and pricing
 |------|----------|-------------|-----|
 | **Free (F1)** | Shared | 60 min/day CPU, no custom domain, no SLA | None |
 | **Shared (D1)** | Shared | Custom domain, 240 min/day CPU | None |
-| **Basic (B1–B3)** | Dedicated | Custom domain, manual scale (up to 3 instances), no auto-scale | **99.95%** |
-| **Standard (S1–S3)** | Dedicated | Auto-scale, **5 deployment slots**, VNet Integration, custom SSL | **99.95%** |
-| **Premium v2/v3 (P1–P3)** | Dedicated | **20 deployment slots**, zone redundancy, larger VMs, private endpoints | **99.95%** |
+| **Basic (B1–B3)** | Dedicated | Custom domain, manual scale (up to 3 instances), no auto-scale, VNet Integration, private endpoints | **99.95%** |
+| **Standard (S1–S3)** | Dedicated | Auto-scale, **5 deployment slots**, custom SSL | **99.95%** |
+| **Premium v2/v3 (P1–P3)** | Dedicated | **20 deployment slots**, zone redundancy, larger VMs | **99.95%** |
 | **Isolated v2 (I1–I3)** | Dedicated VNet | App Service Environment v3 (ASEv3), fully VNet-isolated, private | **99.99%** |
 
 > ⚠️ **Exam Caveat — Tier Feature Gates (Most Tested):**
 > - **Auto-scale** requires **Standard or above** — Basic only supports manual scale to 3 instances
 > - **Deployment slots** start at Standard (5 slots) — Premium has 20
-> - **VNet Integration** (outbound to VNet resources) requires **Standard or above**
+> - **VNet Integration** (outbound to VNet resources) requires **Basic or above**
 > - **Private Endpoints** (inbound isolation) require **Basic or above**
 > - **Zone Redundancy** requires **Premium v2/v3 or Isolated**
 > - **99.99% SLA** only with **App Service Environment (Isolated tier)**
@@ -111,7 +111,7 @@ Add more instances of the same plan. **Auto-scale** (Standard+) adds/removes ins
 
 | Feature | Direction | Tier Requirement | Purpose |
 |---------|-----------|-----------------|---------|
-| **VNet Integration** | Outbound | Standard+ | App accesses resources in a VNet (e.g., private SQL MI, internal APIs) |
+| **VNet Integration** | Outbound | Basic+ | App accesses resources in a VNet (e.g., private SQL MI, internal APIs) |
 | **Private Endpoint** | Inbound | Basic+ | App only accessible from within a VNet; no public internet exposure |
 | **Hybrid Connections** | Outbound | Basic+ | Access on-premises TCP resources without VNet (relay-based) |
 | **App Service Environment (ASE)** | Both | Isolated | Fully VNet-injected dedicated environment for complete isolation |
@@ -162,7 +162,7 @@ ASEv3 is an **App Service deployment into a customer VNet** — a single-tenant,
 | Scenario | Answer |
 |----------|--------|
 | Zero-downtime deployment with rollback | **Deployment slots** (swap) |
-| App needs to call a private SQL Managed Instance | **VNet Integration** (Standard+) |
+| App needs to call a private SQL Managed Instance | **VNet Integration** (Basic+) |
 | App must not be reachable from the public internet | **Private Endpoint** on the app |
 | Full inbound + outbound VNet isolation | **App Service Environment v3** (Isolated tier) |
 | Access on-premises database, no VNet available | **Hybrid Connections** |

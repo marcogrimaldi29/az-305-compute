@@ -126,13 +126,26 @@ Functions use a **declarative** trigger and binding model — no SDK calls neede
 Bindings let functions read from and write to services **without boilerplate code**:
 
 ```csharp
-// HTTP trigger → reads from Cosmos DB → writes to Storage Queue
-[FunctionName("ProcessOrder")]
-public static async Task<IActionResult> Run(
-    [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req,
-    [CosmosDB("orders", "pending", SqlQuery = "SELECT * FROM c WHERE c.id = {id}")] IEnumerable<Order> orders,
-    [Queue("processed-orders")] IAsyncCollector<string> outputQueue)
+// HTTP trigger → reads from Cosmos DB → writes to Storage Queue (.NET isolated worker model)
+[Function("ProcessOrder")]
+public static OrderResponse Run(
+    [HttpTrigger(AuthorizationLevel.Function, "post", Route = "orders/{id}")] HttpRequest req,
+    [CosmosDBInput(databaseName: "orders", containerName: "pending",
+        Connection = "CosmosDBConnection",
+        SqlQuery = "SELECT * FROM c WHERE c.id = {id}")] IEnumerable<Order> orders)
+
+// More than one output → return a custom type with one property per output binding
+public class OrderResponse
+{
+    [QueueOutput("processed-orders")]
+    public string[] Messages { get; set; }
+
+    [HttpResult]
+    public IActionResult HttpResponse { get; set; }
+}
 ```
+
+The sample uses the **.NET isolated worker model**. Support for the in-process model (`[FunctionName]`, `IAsyncCollector<T>` outputs) ended on **10 November 2026**, and Flex Consumption doesn't support it.
 
 ---
 
@@ -151,7 +164,7 @@ public static async Task<IActionResult> Run(
 | **Human Interaction** | Pause workflow waiting for external approval | Approval workflows |
 | **Aggregator (Entity)** | Stateful singleton actor accumulating events over time | IoT device shadow |
 
-> ⚠️ **Exam Caveat — When to Use Durable Functions:** Standard Functions have a **10-minute timeout** on the legacy Consumption plan. For workflows that span minutes, hours, or days — or that require waiting for external events (human approval, external API call-back) — the answer is **Durable Functions**. Durable Functions store state in Azure Storage automatically.
+> ⚠️ **Exam Caveat — When to Use Durable Functions:** Standard Functions have a **10-minute timeout** on the legacy Consumption plan. For workflows that span minutes, hours, or days — or that require waiting for external events (human approval, external API call-back) — the answer is **Durable Functions**. Durable Functions persist state for you — in Azure Storage with no extra setup, or in the managed **Durable Task Scheduler** (the recommended backend).
 
 ### Durable Function Roles
 
@@ -170,7 +183,7 @@ Cold start occurs when a Consumption plan function app has been idle and a new i
 
 | Factor | Impact on Cold Start |
 |--------|---------------------|
-| **Runtime** | .NET in-process < .NET isolated < Java / Python |
+| **Runtime** | .NET isolated worker model: enable placeholders (.NET 8+) and ReadyToRun builds to reduce cold start. The in-process model's support ended 10 Nov 2026 |
 | **Package size** | Larger packages = longer cold start |
 | **VNet Integration** | Not available on Consumption; Premium with VNet adds slight overhead |
 | **Always Ready instances** | Premium: pre-warmed instances with no cold start. Flex Consumption: optional always-ready instances that reduce cold start |
