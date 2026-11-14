@@ -84,6 +84,6 @@ This site uses **[Umami](https://umami.is/)** for privacy-friendly analytics.
 
 The **[Just the Docs](https://github.com/just-the-docs/just-the-docs)** theme is used for a clean, documentation-style layout. Licensed under [MIT](https://opensource.org/license/MIT).
 
-Created with the help of AI. Model used: **[Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6)**. The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
+Created with the help of AI. Models used: **[Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6)** for the original notes, and **[Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)** for the November 2026 update that added the Flex Consumption plan and Azure Batch. The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
 
 > *Not affiliated with or endorsed by Microsoft.*

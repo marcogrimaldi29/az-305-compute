@@ -9,7 +9,7 @@
 > - 🎯 **Purpose:** Deep-dive study notes covering the full Azure Compute spectrum for the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam — with extra depth on serverless: Container Apps, Functions, and Logic Apps.
 > - 📅 **Version:** 2026
 > - ✍ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)
-> - 🌐 **Published:** [🖥️ AZ-305: Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)
+> - 🌐 **Published:** [🥽 AZ-305: Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)
 > - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/) · [🥽 AZ-305: Migration, HA & BCDR — Deep Dive](https://marcogrimaldi29.com/az-305-bcdr/) · [📘 AZ-104 Study Notes](https://marcogrimaldi29.com/az-104-study-notes/)
 
 ---
@@ -25,6 +25,7 @@
 | ☁ **Azure Container Apps** | Serverless containers | Event-driven microservices, Dapr, KEDA auto-scaling |
 | ⚡ **Azure Functions** | Serverless compute | Event-driven, short-lived, trigger-based execution |
 | 🔗 **Azure Logic Apps** | Serverless workflow | No-code/low-code integration workflows and B2B |
+| 🧮 **Azure Batch** | Batch & HPC | Large-scale parallel and HPC jobs on managed VM pools |
 
 ---
 
@@ -32,6 +33,7 @@
 
 ```
 az-305-compute/
+├── .github/                         ← Contributing guide, security policy, code of conduct, issue template
 ├── README.md                        ← 📍 You are here
 ├── index.md                         ← Site home page
 ├── 01-virtual-machines.md           ← Azure VMs & VMSS deep dive
@@ -41,9 +43,11 @@ az-305-compute/
 ├── 05-container-apps.md             ← Azure Container Apps deep dive ★
 ├── 06-azure-functions.md            ← Azure Functions deep dive ★
 ├── 07-logic-apps.md                 ← Azure Logic Apps deep dive ★
-├── 08-feature-comparison.md         ← Side-by-side comparisons & decision tables
+├── 08-feature-comparison.md         ← Side-by-side comparisons, decision tables & batch processing
 └── 09-exam-caveats-cheatsheet.md    ← Exam traps, decision tree, quick-fire facts
 ```
+
+★ = extra depth on serverless
 
 ---
 
@@ -55,7 +59,8 @@ az-305-compute/
 - 📐 Know **Logic Apps Consumption vs Standard** — Standard replaced ISE for VNet connectivity
 - ⚡ Understand **App Service Plan tiers** — deployment slots, VNet integration, and custom domains are tier-gated
 - 🔐 Know which compute services support **VNet injection vs Private Endpoints vs neither**
-- 📊 Memorise **SLA values** — single VM (99.9%), Availability Set (99.95%), Availability Zones (99.99%)
+- 🧮 Know when **Azure Batch** is the answer — large-scale parallel and HPC jobs with the least management overhead; Azure CycleCloud when an existing HPC scheduler must be kept
+- 📊 Memorise **SLA values** — single VM with Premium SSD or Ultra Disk (99.9%), Availability Set (99.95%), Availability Zones (99.99%)
 
 ---
 
@@ -67,7 +72,7 @@ This deep dive is hosted on **GitHub Pages** and published as a searchable websi
 
 The site includes full-text search, Mermaid diagram rendering, and mobile-friendly navigation.
 
-These notes are designed to be a structured, exam-focused summary of the most important concepts and services baseds on the official [Microsoft AZ-305 Study Guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-305) and its criteria.
+These notes are designed to be a structured, exam-focused summary of the most important concepts and services based on the official [Microsoft AZ-305 Study Guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-305) and its criteria.
 
 Additional study notes maintained by me are also available for those pursuing Microsoft and Azure certifications at the following Landing Page:
 
@@ -77,11 +82,11 @@ Additional study notes maintained by me are also available for those pursuing Mi
 
 ## ✍ About the Author
 
-These notes are maintained by **[Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/){:target="_blank"}** — Cloud Consultant, Language Trainer & Lifelong Learner.
+These notes are maintained by **[Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)** — Cloud Consultant, Language Trainer & Lifelong Learner.
 
-📍 **Find more content at [🏠 marcogrimaldi29.com](https://marcogrimaldi29.com){:target="_blank"}**
+📍 **Find more content at [🏠 marcogrimaldi29.com](https://marcogrimaldi29.com)**
 
-> The website is continuously updated and based on my personal study notes and experiences. If you have any feedback, suggestions, or corrections, feel free to [reach out](https://marcogrimaldi29.com/contact/){:target="_blank"}!
+> The website is continuously updated and based on my personal study notes and experiences. If you have any feedback or suggestions, feel free to [reach out](https://marcogrimaldi29.com/contact/)! To report a mistake, see [🐞 Spotted a Mistake?](#-spotted-a-mistake) below.
 
 ---
 
@@ -112,6 +117,6 @@ If these notes helped you prepare for AZ-305, there are a couple of ways to show
 
 The **[Just the Docs](https://github.com/just-the-docs/just-the-docs)** theme is used for a clean, documentation-style layout. Licensed under [MIT](https://opensource.org/license/MIT).
 
-Created with the help of AI. Model used: **[Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6)**. The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
+Created with the help of AI. Models used: **[Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6)** for the original notes, and **[Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)** for the November 2026 update that added the Flex Consumption plan and Azure Batch. The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
 
 > *Not affiliated with or endorsed by Microsoft.*
