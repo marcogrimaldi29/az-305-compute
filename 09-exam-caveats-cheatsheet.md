@@ -133,7 +133,7 @@ For pod-level accessibility from on-premises or peered VNets, use **Azure CNI**.
 > ❌ "I need to build and manage my own database for Durable Functions state"
 > ✅ Durable Functions persist orchestration and entity state through a **storage provider**: the managed **Durable Task Scheduler** (recommended), or a bring-your-own backend — **Azure Storage** (built in, no setup), **MSSQL**, or **Netherite**
 
-The orchestration history, instance state, and timers are all persisted transparently. Netherite support ends on **31 March 2028**, and Netherite isn't supported on the Flex Consumption plan.
+The orchestration history, instance state, and timers are all persisted transparently. Netherite support ends on **31 March 2028**, and Netherite isn't supported on the Flex Consumption plan. **MSSQL** works on Flex Consumption, but only with a SQL-authentication connection string — managed identity to Azure SQL Database isn't supported there.
 
 ---
 
