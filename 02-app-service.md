@@ -116,7 +116,7 @@ Add more instances of the same plan. **Auto-scale** (Standard+) adds/removes ins
 | **Hybrid Connections** | Outbound | Basic+ | Access on-premises TCP resources without VNet (relay-based) |
 | **App Service Environment (ASE)** | Both | Isolated | Fully VNet-injected dedicated environment for complete isolation |
 | **Access restrictions** | Inbound | All tiers | IP-based allow/deny rules, Service Tag rules |
-| **Service Endpoints** | Outbound | Standard+ | Restrict outbound to specific Azure services |
+| **Service Endpoints** | Inbound | All tiers | Access restriction rule that allows traffic only from selected VNet subnets. To *call* resources secured with service endpoints, use VNet Integration |
 
 > ⚠️ **Exam Caveat — VNet Integration vs Private Endpoint:**
 > - **VNet Integration** controls **outbound** traffic from the app — the app can reach private resources inside a VNet
