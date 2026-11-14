@@ -38,7 +38,7 @@ mermaid: true
 | [☁ 05 — Azure Container Apps](05-container-apps.md) | Serverless focus — environments, revisions, KEDA scaling, Dapr, ingress |
 | [⚡ 06 — Azure Functions](06-azure-functions.md) | Serverless focus — hosting plans, triggers, bindings, Durable Functions, cold start |
 | [🔗 07 — Azure Logic Apps](07-logic-apps.md) | Serverless focus — Consumption vs Standard, connectors, ISE, B2B, error handling |
-| [📊 08 — Feature Comparison](08-feature-comparison.md) | IaaS→serverless spectrum, side-by-side tables, decision matrices |
+| [📊 08 — Feature Comparison](08-feature-comparison.md) | IaaS→serverless spectrum, side-by-side tables, decision matrices, batch processing |
 | [🎯 09 — Exam Caveats & Cheatsheet](09-exam-caveats-cheatsheet.md) | Decision trees, exam traps, quick-fire numbers, final checklist |
 
 ---
@@ -49,7 +49,8 @@ Compute is the **largest exam domain at 30–35%** (Design Infrastructure Soluti
 
 - **IaaS vs PaaS vs Serverless trade-offs** — the most frequent scenario type
 - **When containers are right** and which container service to choose (ACI vs AKS vs Container Apps)
-- **Azure Functions hosting plan selection** — Consumption vs Premium vs Dedicated and their cold-start, VNet, and scaling implications
+- **Azure Functions hosting plan selection** — Flex Consumption vs Consumption vs Premium vs Dedicated and their cold-start, VNet, and scaling implications
+- **Batch processing** — when Azure Batch beats a self-managed VM fleet, and when a serverless job is enough
 - **Logic Apps Consumption vs Standard** — when ISE was replaced by Standard, and what that means for VNet connectivity
 - **App Service tier feature gates** — which features require Standard, Premium, or Isolated
 
@@ -65,7 +66,8 @@ Compute is the **largest exam domain at 30–35%** (Design Infrastructure Soluti
 | App Service tier feature gates | [02 — App Service § Plans & Tiers](02-app-service.md#plans-and-tiers) |
 | AKS networking modes compared | [03 — AKS § Networking](03-aks.md#networking) |
 | ACI vs Container Apps vs AKS | [08 — Comparison § Containers](08-feature-comparison.md#container-compute) |
-| Functions Consumption vs Premium vs Dedicated | [06 — Functions § Hosting Plans](06-azure-functions.md#hosting-plans) |
+| Functions Flex Consumption vs Consumption vs Premium vs Dedicated | [06 — Functions § Hosting Plans](06-azure-functions.md#hosting-plans) |
+| Batch processing — Azure Batch vs alternatives | [08 — Comparison § Batch Processing](08-feature-comparison.md#batch-processing) |
 | Logic Apps Consumption vs Standard | [07 — Logic Apps § Hosting Models](07-logic-apps.md#hosting-models) |
 | Container Apps KEDA scaling rules | [05 — Container Apps § Scaling](05-container-apps.md#scaling) |
 | All exam traps in one place | [09 — Exam Caveats](09-exam-caveats-cheatsheet.md) |

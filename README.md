@@ -50,7 +50,7 @@ az-305-compute/
 ## ✅ Key Study Tips for Compute Questions
 
 - 🎯 Know the **IaaS → PaaS → Serverless spectrum** and where each service sits
-- 🔄 Know **Functions Consumption vs Premium vs Dedicated** cold-start and VNet implications
+- 🔄 Know **Functions Flex Consumption vs Consumption vs Premium vs Dedicated** cold-start and VNet implications
 - 💰 Understand **Container Apps vs AKS** — Container Apps is the default answer for event-driven microservices; AKS only when full Kubernetes control is needed
 - 📐 Know **Logic Apps Consumption vs Standard** — Standard replaced ISE for VNet connectivity
 - ⚡ Understand **App Service Plan tiers** — deployment slots, VNet integration, and custom domains are tier-gated

@@ -59,17 +59,17 @@ To prevent inbound public access, use a **Private Endpoint** on the app (or depl
 
 ### Trap 5 — Functions Consumption has NO VNet Integration
 > ❌ "Use a Consumption plan Function to call a SQL Managed Instance in a private VNet"
-> ✅ The Consumption plan **does not support VNet Integration**
+> ✅ The legacy Consumption plan **does not support VNet Integration**
 
-For a Function to reach private VNet resources, it must be on the **Premium plan** or **Dedicated (App Service) plan**.
+For a Function to reach private VNet resources, use the **Flex Consumption** plan (still serverless), the **Premium plan**, or a **Dedicated (App Service) plan**. Don't mix up the two: **Flex Consumption does support VNet Integration**.
 
 ---
 
 ### Trap 6 — Functions Consumption has a 10-minute execution timeout
 > ❌ "Use a Consumption plan Function for a 30-minute data processing job"
-> ✅ The Consumption plan maximum execution timeout is **10 minutes**
+> ✅ The legacy Consumption plan maximum execution timeout is **10 minutes**
 
-For long-running operations use **Durable Functions** (which can span days) or the **Premium/Dedicated plan** (which supports unlimited duration).
+For long-running operations use **Durable Functions** (which can span days) or the **Flex Consumption, Premium, or Dedicated plan** (no maximum enforced). HTTP-triggered functions must still respond within **230 seconds** on every plan.
 
 ---
 
@@ -77,7 +77,7 @@ For long-running operations use **Durable Functions** (which can span days) or t
 > ❌ "Use the Premium plan to get the lowest possible cost with zero traffic"
 > ✅ The Premium plan maintains a **minimum of 1 always-ready instance** — you are billed for it even with zero executions
 
-For truly zero-cost idle, use the **Consumption plan** (scale to zero). Premium eliminates cold start but never truly idles.
+For truly zero-cost idle, use **Flex Consumption** (with no always-ready instances) or the **Consumption plan** (scale to zero). Premium eliminates cold start but never truly idles.
 
 ---
 
@@ -129,11 +129,11 @@ For pod-level accessibility from on-premises or peered VNets, use **Azure CNI**.
 
 ---
 
-### Trap 14 — Durable Functions store state in Azure Storage automatically
-> ❌ "I need to manage a database for Durable Functions state"
-> ✅ Durable Functions automatically use **Azure Storage** (or Netherite / MSSQL backends) for state — no custom database needed
+### Trap 14 — Durable Functions persist state for you — no custom database
+> ❌ "I need to build and manage my own database for Durable Functions state"
+> ✅ Durable Functions persist orchestration and entity state through a **storage provider**: the managed **Durable Task Scheduler** (recommended), or a bring-your-own backend — **Azure Storage** (built in, no setup), **MSSQL**, or **Netherite**
 
-The orchestration history, instance state, and timers are all persisted transparently.
+The orchestration history, instance state, and timers are all persisted transparently. Netherite support ends on **31 March 2028**, and Netherite isn't supported on the Flex Consumption plan. **MSSQL** works on Flex Consumption, but only with a SQL-authentication connection string — managed identity to Azure SQL Database isn't supported there.
 
 ---
 
@@ -145,11 +145,19 @@ Power Automate shares some connectors with Logic Apps but lacks EDI (X12, EDIFAC
 
 ---
 
-### Trap 16 — Deployment slots not available on Functions Consumption
-> ❌ "Use deployment slots on a Consumption plan Function App for staged releases"
-> ✅ Deployment slots for Function Apps require **Premium or Dedicated (App Service) plan**
+### Trap 16 — Functions deployment slots depend on the hosting plan
+> ❌ "Use deployment slots on a Flex Consumption Function App for staged releases"
+> ✅ **Flex Consumption has no deployment slots** — it uses rolling updates instead
 
-Consumption plan Functions do not support slots.
+The legacy **Consumption** plan supports **2 slots** (production + one staging), **Premium 3**, and **Dedicated** up to 20 depending on the App Service tier. For several staging slots, use **Premium** or **Dedicated**.
+
+---
+
+### Trap 17 — Large-scale parallel batch jobs → Azure Batch, not a DIY VM fleet
+> ❌ "Deploy a VM Scale Set and install a job scheduler to render 10,000 frames overnight with minimal management"
+> ✅ **Azure Batch** provisions the VM pool, installs the application, schedules and requeues tasks, and scales the pool down — with no scheduler software to manage
+
+If the scenario requires keeping an **existing HPC scheduler** (for example Slurm), the answer is **Azure CycleCloud** instead. To cut cost, add **Spot nodes** to the Batch pool.
 
 ---
 
@@ -171,20 +179,25 @@ Consumption plan Functions do not support slots.
 | Custom domain | Shared (D1) |
 | Auto-scale | **Standard** |
 | Deployment slots | **Standard** (5 slots) |
-| VNet Integration | **Standard** |
+| VNet Integration | **Basic** |
 | Zone redundancy | **Premium v2/v3** |
 | Private Endpoint | **Basic** |
 | 99.99% SLA | **Isolated (ASEv3)** |
 
 ### Functions Hosting Plan Limits
 
-| Property | Consumption | Premium | Dedicated |
-|----------|------------|---------|-----------|
-| Max timeout | **10 min** | Unlimited | Unlimited |
-| Scale to zero | ✅ | ❌ | ❌ |
-| VNet Integration | ❌ | ✅ | ✅ |
-| Min instances | 0 | **1** | Fixed |
-| Cold start | Yes | No | No |
+| Property | Flex Consumption | Consumption (legacy) | Premium | Dedicated |
+|----------|-----------------|---------------------|---------|-----------|
+| Max timeout | Unbounded | **10 min** | Unbounded | Unbounded (Always On) |
+| Scale to zero | ✅ | ✅ | ❌ | ❌ |
+| VNet Integration | ✅ | ❌ | ✅ | ✅ |
+| Min instances | 0 (always-ready optional) | 0 | **1** | Fixed |
+| Cold start | Reduced | Yes | No | No |
+| Max scale-out | **1,000** per function group | 200 Windows / 100 Linux | 100 Windows / 20–100 Linux | 10–30 (100 on ASE) |
+| Deployment slots | ❌ | 2 | 3 | 1–20 |
+| OS | Linux only | Windows (Linux retiring 30 Sep 2028) | Windows, Linux | Windows, Linux |
+
+HTTP-triggered functions must respond within **230 seconds** on every plan, whatever the timeout setting.
 
 ### Container Limits
 
@@ -220,7 +233,9 @@ flowchart TD
     Start --> A{"Need full OS access\nor legacy software?"}
     A -->|Yes| VM["🖥️ VMs / VMSS"]
 
-    A -->|No| B{"Containerised\nworkload?"}
+    A -->|No| HPC{"Large-scale parallel\nor HPC batch jobs?"}
+    HPC -->|Yes| BATCH["🧮 Azure Batch"]
+    HPC -->|No| B{"Containerised\nworkload?"}
     B -->|No| C{"Event-driven code\nor workflow?"}
 
     B -->|Yes| D{"Need full Kubernetes\ncontrol / CRDs?"}
@@ -232,8 +247,8 @@ flowchart TD
     F -->|No| ASP_C["🌐 App Service\n(custom container)"]
 
     C -->|Code, event-driven| G{"Long-running\nor VNet required?"}
-    G -->|No| FNCON["⚡ Functions\nConsumption"]
-    G -->|VNet but short| FNPREM["⚡ Functions\nPremium"]
+    G -->|No| FNCON["⚡ Functions\nFlex Consumption"]
+    G -->|VNet but short| FNPREM["⚡ Functions\nFlex Consumption\nor Premium"]
     G -->|Long-running| DUR["⚡ Durable\nFunctions"]
 
     C -->|No-code workflow / B2B| H{"Private VNet\nconnectivity needed?"}
@@ -250,12 +265,13 @@ flowchart TD
 | Service | One-Line Definition |
 |---------|-------------------|
 | **VMs / VMSS** | IaaS — full OS control, lift-and-shift, scale sets for elastic VM fleets |
-| **App Service** | PaaS web hosting — managed runtime, deployment slots, VNet Integration on Standard+ |
+| **App Service** | PaaS web hosting — managed runtime, deployment slots, VNet Integration on Basic+ |
 | **AKS** | Managed Kubernetes — full K8s API, custom CRDs, free control plane with Standard tier SLA |
 | **ACI** | Serverless containers — instant, ephemeral, 4 vCPU max, per-second billing |
 | **Container Apps** | Serverless container platform — KEDA scaling, Dapr, revisions, scale to zero |
-| **Functions** | Serverless code — trigger-based, Consumption = scale-to-zero + 10min limit, Premium = VNet + no cold start |
+| **Functions** | Serverless code — trigger-based; Flex Consumption = scale to zero + VNet; legacy Consumption = scale to zero + 10-min limit, no VNet; Premium = pre-warmed, no cold start |
 | **Logic Apps** | Serverless workflow — 500+ connectors, B2B/EDI; Standard = VNet + multiple workflows |
+| **Azure Batch** | Managed job scheduler on VM pools — large-scale parallel and HPC jobs; pay only for the VMs used |
 
 ---
 
@@ -267,14 +283,15 @@ flowchart TD
 | Single VM + 99.9% SLA | **Premium SSD** on all disks |
 | 99.99% SLA for App Service | **App Service Environment v3** (Isolated tier) |
 | Auto-scale on App Service | **Standard plan or above** |
-| App calls private VNet resource | App Service **VNet Integration** (Standard+) or Functions **Premium** |
+| App calls private VNet resource | App Service **VNet Integration** (Basic+) or Functions **Flex Consumption / Premium** |
 | App is NOT publicly accessible | App Service / Functions **Private Endpoint** |
 | Full Kubernetes API access | **AKS** |
 | Containers, scale to zero, KEDA | **Azure Container Apps** |
 | Containers, no orchestration, short-lived | **ACI** |
-| Functions + VNet Integration | **Premium plan** (not Consumption) |
+| Functions + VNet Integration | **Flex Consumption** (serverless) or **Premium** — not legacy Consumption |
 | Functions + no cold start | **Premium plan** (Always Ready instances) |
-| Functions + execution > 10 min | **Durable Functions** or **Premium/Dedicated plan** |
+| Serverless Functions, scale to zero, private VNet access | **Flex Consumption** |
+| Functions + execution > 10 min | **Durable Functions** or **Flex Consumption / Premium / Dedicated** plan |
 | Stateful long-running workflow in code | **Durable Functions** |
 | No-code workflow with 500+ connectors | **Logic Apps** |
 | Logic Apps + VNet / private connectivity | **Logic Apps Standard** (not Consumption) |
@@ -283,7 +300,9 @@ flowchart TD
 | Canary / blue-green on serverless containers | **Container Apps revision traffic split** |
 | All egress from containers through a firewall | **Container Apps Dedicated plan** (UDR support) |
 | Batch job on cheapest serverless container | **ACI** (or Container Apps Consumption) |
-| Spot VMs for batch workers | **VMSS Spot node pool** |
+| Spot VMs for batch workers | **VMSS Spot** / **AKS Spot node pool**, or **Spot nodes** in an Azure Batch pool |
+| Large-scale parallel / HPC batch jobs, managed scheduling | **Azure Batch** |
+| HPC batch with an existing scheduler (Slurm) to keep | **Azure CycleCloud** |
 | Physical single-tenant isolation | **Azure Dedicated Hosts** |
 
 ---
@@ -297,8 +316,8 @@ Before sitting the exam, verify you can answer these without hesitation:
 - [ ] What App Service Plan tier is needed for auto-scale?
 - [ ] What is the difference between VNet Integration and Private Endpoint on App Service?
 - [ ] What is ASEv3 and when is it the right answer?
-- [ ] What are the three Functions hosting plans and their key differences?
-- [ ] Why can't a Consumption plan Function call a private SQL Managed Instance?
+- [ ] What are the Functions hosting plans (Flex Consumption, Consumption, Premium, Dedicated) and their key differences?
+- [ ] Why can't a Consumption plan Function call a private SQL Managed Instance, and which serverless plan can?
 - [ ] What is the execution timeout on a Consumption plan Function?
 - [ ] What are Durable Functions and which patterns exist?
 - [ ] What replaced ISE for Logic Apps VNet connectivity?
@@ -308,6 +327,7 @@ Before sitting the exam, verify you can answer these without hesitation:
 - [ ] What is KEDA and what triggers does Container Apps support?
 - [ ] What is the maximum vCPU limit for an ACI container group?
 - [ ] What AKS networking mode gives pods real VNet IP addresses?
+- [ ] When is Azure Batch the right answer, and when is Azure CycleCloud?
 
 ---
 
